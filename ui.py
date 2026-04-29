@@ -52,7 +52,7 @@ class TicTacToeUI:
         for w in self.root.winfo_children():
             w.destroy()
 
-        self.root.geometry("600x650")
+        self.root.geometry("480x620")
 
         tk.Label(self.root, text="TIC-TAC-TOE", font=self.f_title,
                  fg=ACCENT_GOLD, bg=BG_DARK).pack(pady=(30, 2))
@@ -60,7 +60,7 @@ class TicTacToeUI:
                  fg=TEXT_DIM, bg=BG_DARK).pack(pady=(0, 25))
 
         card = tk.Frame(self.root, bg=BG_PANEL, bd=0, relief="flat")
-        card.pack(padx=40, fill="x")
+        card.pack(expand=True,padx=40, fill="x")
 
         tk.Label(card, text="SELECT AI ALGORITHM", font=self.f_menu_hdr,
                  fg=ACCENT_TEAL, bg=BG_PANEL).pack(pady=(20, 10))
@@ -69,24 +69,21 @@ class TicTacToeUI:
             (
                 "alphabeta",
                 "Alpha-Beta Pruning",
-                "Minimax + pruning · Unbeatable · Efficient",
                 ACCENT_TEAL,
             ),
             (
                 "minimax",
                 "Minimax",
-                "Exhaustive search · Unbeatable · Classic",
                 ACCENT_GOLD,
             ),
             (
                 "greedy",
                 "Greedy Heuristic",
-                "One-step lookahead · Beatable · Fast",
                 ACCENT_RED,
             ),
         ]
 
-        for value, label, desc, color in algorithms:
+        for value, label, color in algorithms:
             row = tk.Frame(card, bg=BG_PANEL, cursor="hand2")
             row.pack(fill="x", padx=20, pady=5)
 
@@ -107,9 +104,6 @@ class TicTacToeUI:
             )
             rb.pack(anchor="w")
 
-            tk.Label(row, text=f"  {desc}", font=self.f_score,
-                     fg=TEXT_DIM, bg=BG_PANEL).pack(anchor="w")
-
         start_btn = tk.Button(
             self.root,
             text="START GAME  ▶",
@@ -124,23 +118,11 @@ class TicTacToeUI:
             pady=12,
             command=self._start_game,
         )
-        start_btn.pack(pady=30)
+        start_btn.pack(side="bottom",pady=30)
 
         info = tk.Frame(self.root, bg=BG_DARK)
         info.pack(padx=40, fill="x")
-        tk.Label(
-            info,
-            text=(
-                "Minimax & Alpha-Beta are mathematically optimal — they\n"
-                "never lose. Greedy uses a heuristic score and CAN be beaten\n"
-                "by a strategic player (try setting up a fork!)."
-            ),
-            font=self.f_subtitle,
-            fg=TEXT_DIM,
-            bg=BG_DARK,
-            justify="left",
-            wraplength=400,
-        ).pack(anchor="w")
+        
 
 
     def _start_game(self):
@@ -247,7 +229,6 @@ class TicTacToeUI:
     # GAME LOGIC HANDLERS
 
     def _on_click(self, index: int):
-        """Handle a human player's cell click."""
         if self.game_over:
             return
 
