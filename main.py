@@ -1,6 +1,12 @@
 import tkinter as tk
 from ui import TicTacToeUI
 
-root = tk.Tk()
-app = TicTacToeUI(root)
-root.mainloop()
+
+def main():
+    root = tk.Tk()
+    app = TicTacToeUI(root)
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
