@@ -50,22 +50,3 @@ class Board:
 
     def is_game_over(self) -> bool:
         return self.check_winner("X") or self.check_winner("O") or self.is_draw()
-
-    def copy(self) -> "Board":
-        new_board = Board()
-        new_board.cells = self.cells[:]
-        return new_board
-
-    def print_board(self):
-        symbols = {
-            "X": "X",
-            "O": "O",
-            "":  "·"
-        }
-        print()
-        for row in range(3):
-            row_cells = [symbols[self.cells[row * 3 + col]] for col in range(3)]
-            print(f"  {row_cells[0]} | {row_cells[1]} | {row_cells[2]}")
-            if row < 2:
-                print("  ---------")
-        print()

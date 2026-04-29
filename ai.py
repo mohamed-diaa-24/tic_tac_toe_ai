@@ -36,7 +36,6 @@ class AI:
 
 
     def _minimax_move(self, board: Board) -> int:
-        """Select the best move using the Minimax algorithm."""
         best_score = -math.inf
         best_move = None
 
@@ -52,16 +51,6 @@ class AI:
         return best_move
 
     def _minimax(self, board: Board, is_maximizing: bool) -> int:
-        """
-        Recursive Minimax helper.
-
-        Args:
-            board: Current simulated board state.
-            is_maximizing: True if it's the AI's turn to maximize, False for human to minimize.
-
-        Returns:
-            Integer score: +1 (AI wins), -1 (human wins), 0 (draw).
-        """
         if board.check_winner(self.ai_mark):
             return 1
         if board.check_winner(self.human_mark):
@@ -88,7 +77,6 @@ class AI:
 
 
     def _alphabeta_move(self, board: Board) -> int:
-        """Select the best move using Alpha-Beta Pruning."""
         best_score = -math.inf
         best_move = None
 
