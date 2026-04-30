@@ -47,6 +47,3 @@ class Board:
 
     def is_draw(self) -> bool:
         return "" not in self.cells
-
-    def is_game_over(self) -> bool:
-        return self.check_winner("X") or self.check_winner("O") or self.is_draw()
